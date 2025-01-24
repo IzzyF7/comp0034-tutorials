@@ -8,11 +8,11 @@ The Dash application is based on the paralympics data used in COMP0035 tutorials
 
 The activities included are:
 
-1. [Create a basic Dash app and add a layout with HTML elements](1-3-dash-app-layout)
-2. [Enable Dash Bootstrap Components CSS styling for the Dash app](1-4-add-bootstrap)
-3. [Add the 12 column layout to the Dash app](1-5-12columnlayout)
-4. [Add HTML components into the layout](1-6-add-html-components)
-5. [(optional) Create a multi-page version of the app](1-7-multipage-app)
+1. [Create a basic Dash app and add a layout with HTML elements](1-3-dash-app-layout.md)
+2. [Enable Dash Bootstrap Components CSS styling for the Dash app](1-4-add-bootstrap.md)
+3. [Add the 12 column layout to the Dash app](1-5-12columnlayout.md)
+4. [Add HTML components into the layout](1-6-add-html-components.md)
+5. [(optional) Create a multi-page version of the app](1-7-multipage-app.md)
 
 The activities build towards a single page Dashboard design with the following layout. The layout is based on a 12
 column grid:
@@ -60,6 +60,8 @@ that implements this for Dash apps.
 [Dash Bootstrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) supports
 the grid style design, with CSS styles to apply to rows and columns.
 
+Dash bootstrap components is recommended for the coursework.
+
 ### Inspiration from other apps
 
 Have a look at the examples of apps built with Dash. These may give you inspiration for the layout of your own app.
@@ -77,4 +79,4 @@ all give either examples or guidance on design.
 - [Toptal: Top Data Vis examples and Dashboard designs](https://www.toptal.com/designers/dashboard-design/top-data-visualization-dashboard-examples)
 - [Halo lab: Modern dashboard design - best practices and examples](https://www.halo-lab.com/blog/dashboard-design-examples)
 
-[Next activity](1-3-dash-app-layout)
+[Next activity](1-3-dash-app-layout.md)
