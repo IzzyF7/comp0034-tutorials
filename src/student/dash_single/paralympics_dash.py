@@ -1,6 +1,11 @@
 # Imports for Dash and Dash.html
-from dash import Dash, html
+from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
+from student.dash_single.figures import line_chart
+from student.dash_single.figures import bar_gender
+from student.dash_single.figures import scatter_geo
+from student.dash_single.figures import para_card
+from student.dash_single.figures import country_hist
 
 # Variable that defines the meta tag for the viewport
 meta_tags = [
@@ -10,8 +15,15 @@ meta_tags = [
 # Variable that contains the external_stylesheet to use, in this case Bootstrap styling from dash bootstrap components (dbc)
 external_stylesheets = [dbc.themes.PULSE]
 
+line_fig = line_chart("sports")
+bar_fig = bar_gender("Summer")
+map = scatter_geo()
+histogram = country_hist()
+
+
 # Create an instance of the Dash app
 app = Dash(__name__, external_stylesheets=external_stylesheets, meta_tags=meta_tags)
+card = para_card("Tokyo 2020", app)
 
 # Add an HTML layout to the Dash app
 app.layout = dbc.Container([
@@ -43,31 +55,25 @@ app.layout = dbc.Container([
             ),
         ]
     ),
-
-    html.Div(
-        [
-    # Column 1 children
-    # className="img-fluid" is a Bootstrap class and prevents the image spanning the next column
-    html.Img(src=app.get_asset_url('line-chart-placeholder.png'), className="img-fluid"),
-
-    # Column 2 children
-    html.Img(src=app.get_asset_url('bar-chart-placeholder.png'), className="img-fluid"),
-        ]
-    ),
-
-    # Column 2 children
-    dbc.Card([
-        dbc.CardImg(src=app.get_asset_url("logos/2022_Beijing.jpg"), top=True),
-        dbc.CardBody([
-            html.H4("Beijing 2022", className="card-title"),
-            html.P("Number of athletes: XX", className="card-text"),
-            html.P("Number of events: XX", className="card-text"),
-            html.P("Number of countries: XX", className="card-text"),
-            html.P("Number of sports: XX", className="card-text"),
-        ]),
-    ],
-        style={"width": "18rem"},
-    )
+    dbc.Row([
+        dbc.Col(
+            dcc.Graph(id='line-chart', figure=line_fig),
+            width=6
+        ),
+        dbc.Col(
+            dcc.Graph(id='bar_chart', figure=bar_fig),
+            width=6
+        ),
+        dbc.Col(
+            dcc.Graph(id='map', figure=map),
+            width=12
+        ), 
+        dbc.Col(
+            dcc.Graph(id='histogram', figure=histogram),
+            width=12
+        )
+    ]),
+    dbc.Col(children=[card], id='card', width=4),
 ])
 
 # Run the app
