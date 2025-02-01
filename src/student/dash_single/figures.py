@@ -107,6 +107,24 @@ def scatter_geo():
         # Adds a new column that concatenates the city and year e.g. Barcelona 2012
         df_locs['name'] = df_locs['host'] + ' ' + df_locs['year'].astype(str)
         
+        {'points': [
+    {
+        'curveNumber': 0,
+        'pointNumber': 26,
+        'pointIndex': 26,
+        'lon': -111.891,
+        'lat': 40.7608,
+        'location': None,
+        'hovertext': 'Salt Lake City 2002',
+        'bbox': {
+            'x0': 358.1616351292792,
+            'x1': 364.1616351292792,
+            'y0': 768.858120645785,
+            'y1': 774.858120645785
+        }
+    }
+]
+}
         # Create the figure
         fig = px.scatter_geo(df_locs,
                              lat=df_locs.latitude,

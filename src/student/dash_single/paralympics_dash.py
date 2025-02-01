@@ -59,16 +59,19 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(
             dcc.Graph(id='line-chart', figure=line_fig),
-            width=6
+            width=5
         ),
         dbc.Col(
-            dcc.Graph(id='map', figure=map),
-            width=12
-        ), 
-        dbc.Col(
             dcc.Graph(id='histogram', figure=histogram),
-            width=12
+            width=8
         )
+    ]),
+    dbc.Row([
+           dbc.Col(
+            dcc.Graph(id='map', figure=map),
+            width=8
+        ), 
+        dbc.Col(children=[card], id='card', width=4)
     ]),
     dbc.Row([
         dbc.Col(
@@ -76,17 +79,18 @@ app.layout = dbc.Container([
             width=6
         )
     ]),
-    dbc.Col(children=[card], id='card', width=4),
 ])
 
 
 @app.callback(
     Output('line-chart', 'figure'),  # The component being updated is the line-chart with id="line-chart"
     Output('bar_chart', 'figure'),  # The component being updated is the bar_chart with id="bar_chart"
+    Output('card', 'children'),
     Input('dropdown-input', 'value'),  # The input is the dropdown with id="dropdown-input"
-    Input('checklist-input', 'value')  # The input is the checklist with id="checklist-input"
+    Input('checklist-input', 'value'),  # The input is the checklist with id="checklist-input"
+    Input('map', 'hoverData')
 )
-def update_charts(dropdown_value, checklist_value):
+def update_charts(dropdown_value, checklist_value, hover_data):
     # Update line chart based on dropdown value
     if dropdown_value == "events":
         line_fig = line_chart("events")
@@ -98,19 +102,21 @@ def update_charts(dropdown_value, checklist_value):
         line_fig = line_chart("participants")
     
     # Update bar chart based on checklist value
-    if "summer" in checklist_value and "winter" in checklist_value:
-        bar_fig_summer = bar_gender("Summer")
-        bar_fig_winter = bar_gender("Winter")
-        return line_fig, bar_fig_summer, bar_fig_winter
-    elif "summer" in checklist_value:
+    if "summer" in checklist_value:
         bar_fig = bar_gender("Summer")
-        return line_fig, bar_fig
     elif "winter" in checklist_value:
         bar_fig = bar_gender("Winter")
-        return line_fig, bar_fig
     else:
         bar_fig = bar_gender("None")
-        return line_fig, bar_fig
+    
+    # Update card based on hover data
+    if hover_data and 'points' in hover_data and hover_data['points']:
+        text = hover_data['points'][0].get('hovertext', 'Tokyo 2020')
+    else:
+        text = 'Tokyo 2020'
+    card = para_card(text, app)
+    
+    return line_fig, bar_fig, card
     
 # Run the app
 if __name__ == '__main__':
