@@ -5,7 +5,7 @@ This week's activities introduce a different method for working with a SQL datab
 You do not have to use SQLAlchemy in a Flask app, however it is a commonly used approach and is included in the course
 to give you experience of another way to access a database and experience of coding with Python classes.
 
-This week's activities are likely to take longer than 2 hours.
+This week's activities are likely to take longer than 2 hours to complete.
 
 If you prefer to continue using `sqlite3`, skip to activity 7.7.
 
