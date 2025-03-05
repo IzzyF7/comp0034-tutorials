@@ -56,7 +56,7 @@ data type for the Python class than is stored in the database table. The Python 
 functions).
 
 Many of the tutorials you will see relating to the use of Flask-SQLAlchemy store the code to define the Python classes
-in a module called `models.py`. This a convention, you do not have to name your module in this way.
+in a module called `models.py`. This is a convention, you do not have to name your module in this way.
 
 ### Code to interact with the database
 
